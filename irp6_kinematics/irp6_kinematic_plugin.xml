@@ -1,0 +1,7 @@
+<library path="lib/libIRP6Kinematic">
+  <class name="irp6_kinematics/IRP6Kimematics" type="IRP6Kinematics" base_class_type="kinematics::KinematicsBase">
+  <description>
+  This is a rectangle plugin
+  </description>
+  </class>
+</library>

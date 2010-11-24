@@ -1,0 +1,23 @@
+<package>
+  <description brief="irp6_kinematics">
+
+     irp6_kinematics
+
+  </description>
+  <author>Konrad Banachowicz</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/irp6_kinematics</url>
+  <depend package="kinematics_base"/>
+  <depend package="pluginlib"/>
+  <depend package="geometry_msgs"/>
+  <depend package="motion_planning_msgs"/>
+  <depend package="kinematics_msgs"/>
+
+  <export>
+    <kinematics_base plugin="${prefix}/irp6_kinematic_plugin.xml" />
+  </export>
+
+</package>
+
+
