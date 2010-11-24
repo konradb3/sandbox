@@ -1,0 +1,18 @@
+<package>
+  <description brief="ati6286">
+
+     ati6286
+
+  </description>
+  <author>Konrad Banachowicz</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ati6286</url>
+  <depend package="rtt"/>
+  <depend package="ocl"/>
+  <depend package="kdl"/>
+  <depend package="geometry_msgs" />
+
+</package>
+
+
