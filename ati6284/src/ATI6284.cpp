@@ -28,6 +28,11 @@ bool ATI6284::configureHook()
 
 bool ATI6284::startHook()
 {
+  readData();
+
+  for(int i = 0; i < 6; i++)
+    bias_[i] = voltage_ADC_[i];
+
   return true;
 }
 
@@ -83,7 +88,7 @@ void ATI6284::voltage2FT()
   {
     for (int j = 0; j < 6; ++j)
     {
-      wrench_[i] += voltage_ADC_[j] * conversion_matrix[i][j];
+      wrench_[i] += (voltage_ADC_[j] - bias_[i]) * conversion_matrix[i][j];
     }
 
     wrench_[i] /= conversion_scale[i];

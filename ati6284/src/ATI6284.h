@@ -44,6 +44,7 @@ private:
     lsampl_t raw_ADC_[6];
 
     double voltage_ADC_[6];
+    double bias_[6];
     comedi_polynomial_t calib_ADC_;
 
     KDL::Wrench wrench_;
