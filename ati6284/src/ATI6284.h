@@ -37,21 +37,20 @@ public:
 
 protected:
     RTT::OutputPort<geometry_msgs::Wrench> wrench_port_;
+    RTT::Property<std::string> device_prop_;
+    RTT::Property<KDL::Wrench> offset_prop_;
 private:
     comedi_t *device_;
     lsampl_t raw_ADC_[6];
 
     double voltage_ADC_[6];
-    double bias_[6];
     comedi_polynomial_t calib_ADC_;
 
     KDL::Wrench wrench_;
-    KDL::Frame force_tool_;
 
     bool initSensor();
     void readData();
     void voltage2FT();
-
 
 };
 
