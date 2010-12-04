@@ -22,7 +22,7 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib/orocos)
 #rosbuild_gensrv()
 
 #common commands for building c++ executables and libraries
-rosbuild_add_library(${PROJECT_NAME} src/ATI6286.cpp)
+rosbuild_add_library(${PROJECT_NAME} src/ATI6284.cpp)
 target_link_libraries(${PROJECT_NAME} comedi)
 #rosbuild_add_boost_directories()
 #rosbuild_link_boost(${PROJECT_NAME} thread)

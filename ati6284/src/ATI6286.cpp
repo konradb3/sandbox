@@ -1,7 +1,7 @@
 
 #include <ocl/Component.hpp>
 
-#include "ATI6286.h"
+#include "ATI6284.h"
 
 void WrenchKDLToMsg(const KDL::Wrench &in, geometry_msgs::Wrench &out)
 {
@@ -14,17 +14,17 @@ void WrenchKDLToMsg(const KDL::Wrench &in, geometry_msgs::Wrench &out)
   out.torque.z = in[5];
 }
 
-ATI6286::ATI6286(const std::string &name) : RTT::TaskContext(name, PreOperational), wrench_port_("wrench")
+ATI6284::ATI6284(const std::string &name) : RTT::TaskContext(name, PreOperational), wrench_port_("wrench")
 {
   this->addPort(wrench_port_);
 }
 
-bool ATI6286::configureHook()
+bool ATI6284::configureHook()
 {
     return initSensor();
 }
 
-bool ATI6286::startHook()
+bool ATI6284::startHook()
 {
   readData();
 
@@ -34,7 +34,7 @@ bool ATI6286::startHook()
   return true;
 }
 
-void ATI6286::updateHook()
+void ATI6284::updateHook()
 {
   geometry_msgs::Wrench wrenchMsg;
 
@@ -47,12 +47,12 @@ void ATI6286::updateHook()
   wrench_port_.write(wrenchMsg);
 }
 
-void ATI6286::stopHook()
+void ATI6284::stopHook()
 {
 
 }
 
-bool ATI6286::initSensor()
+bool ATI6284::initSensor()
 {
   device_ = comedi_open("/dev/comedi0");
   if(!device_)
@@ -65,7 +65,7 @@ bool ATI6286::initSensor()
   return true;
 }
 
-void ATI6286::readData()
+void ATI6284::readData()
 {
   comedi_data_read(device_, 0, 0, 0, AREF_DIFF, &raw_ADC_[0]);
   comedi_data_read(device_, 0, 1, 0, AREF_DIFF, &raw_ADC_[1]);
@@ -80,7 +80,7 @@ void ATI6286::readData()
   }
 }
 
-void ATI6286::voltage2FT()
+void ATI6284::voltage2FT()
 {
   double tmp[6];
 
@@ -100,4 +100,4 @@ void ATI6286::voltage2FT()
   }
 }
 
-ORO_CREATE_COMPONENT( ATI6286 )
+ORO_CREATE_COMPONENT( ATI6284 )
