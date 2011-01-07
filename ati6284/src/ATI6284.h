@@ -1,5 +1,5 @@
-#ifndef ATI6286_H
-#define ATI6286_H
+#ifndef ATI6284_H
+#define ATI6284_H
 
 #include <string>
 #include <comedilib.h>
@@ -25,10 +25,10 @@ const double conversion_matrix[6][6] = {
   {-0.15775, -18.16831,  -0.00133, -18.78961,   0.31895, -18.38586}
 };
 
-class ATI6286 : public RTT::TaskContext
+class ATI6284 : public RTT::TaskContext
 {
 public:
-    ATI6286(const std::string &name);
+    ATI6284(const std::string &name);
 
     bool configureHook();
     bool startHook();
@@ -37,6 +37,8 @@ public:
 
 protected:
     RTT::OutputPort<geometry_msgs::Wrench> wrench_port_;
+    RTT::Property<std::string> device_prop_;
+    RTT::Property<KDL::Wrench> offset_prop_;
 private:
     comedi_t *device_;
     lsampl_t raw_ADC_[6];
@@ -46,13 +48,11 @@ private:
     comedi_polynomial_t calib_ADC_;
 
     KDL::Wrench wrench_;
-    KDL::Frame force_tool_;
 
     bool initSensor();
     void readData();
     void voltage2FT();
 
-
 };
 
-#endif // ATI6286_H
+#endif // ATI6284_H
