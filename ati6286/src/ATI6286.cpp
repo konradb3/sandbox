@@ -5,13 +5,13 @@
 
 void WrenchKDLToMsg(const KDL::Wrench &in, geometry_msgs::Wrench &out)
 {
-  out.force.x = in[0];
-  out.force.y = in[1];
-  out.force.z = in[2];
+  out.force.x = in[0] + 3.6095;
+  out.force.y = in[1] - 2.3973;
+  out.force.z = in[2] + 6.1467;
 
-  out.torque.x = in[3];
-  out.torque.y = in[4];
-  out.torque.z = in[5];
+  out.torque.x = in[3] - 0.7662;
+  out.torque.y = in[4] + 0.4179;
+  out.torque.z = in[5] - 0.022;
 }
 
 ATI6286::ATI6286(const std::string &name) : RTT::TaskContext(name, PreOperational), wrench_port_("wrench")
@@ -29,7 +29,7 @@ bool ATI6286::startHook()
   readData();
 
   for(int i = 0; i < 6; i++)
-    bias_[i] = voltage_ADC_[i];
+    bias_[i] = 0.0; //voltage_ADC_[i];
 
   return true;
 }
@@ -67,6 +67,9 @@ bool ATI6286::initSensor()
 
 void ATI6286::readData()
 {
+
+ for(int i = 0; i < 5; i++)
+ {
   comedi_data_read(device_, 0, 0, 0, AREF_DIFF, &raw_ADC_[0]);
   comedi_data_read(device_, 0, 1, 0, AREF_DIFF, &raw_ADC_[1]);
   comedi_data_read(device_, 0, 2, 0, AREF_DIFF, &raw_ADC_[2]);
@@ -75,9 +78,12 @@ void ATI6286::readData()
   comedi_data_read(device_, 0, 5, 0, AREF_DIFF, &raw_ADC_[5]);
 
   for(int i = 0; i < 6; i++)
-  {
-    voltage_ADC_[i] = comedi_to_physical(raw_ADC_[i], &calib_ADC_);
-  }
+    voltage_ADC_[i] += comedi_to_physical(raw_ADC_[i], &calib_ADC_);
+  
+ }
+
+ for(int i = 0; i < 6; i++)
+   voltage_ADC_[i] /= 5;
 }
 
 void ATI6286::voltage2FT()
@@ -87,7 +93,10 @@ void ATI6286::voltage2FT()
   SetToZero(wrench_);
 
   for(int i = 0; i < 6; i++)
+  {
     tmp[i] = voltage_ADC_[i] - bias_[i];
+    voltage_ADC_[i] = 0.0;
+  }
 
   for (int i = 0; i < 6; ++i)
   {
