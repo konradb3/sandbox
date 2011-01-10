@@ -8,6 +8,7 @@
 #include <ros/ros.h>
 #include <urdf/model.h>
 
+#include <tf/transform_datatypes.h>
 #include <sensor_msgs/JointState.h>
 #include <pr2_controllers_msgs/JointTrajectoryAction.h>
 #include <actionlib/client/simple_action_client.h>
@@ -43,6 +44,15 @@ public slots:
     void properties();
     void copyJoints();
     void copyCart();
+
+    void transformSl(const tf::StampedTransform transform);
+    void jointStateSl(const sensor_msgs::JointState msg);
+
+
+signals:
+    void transformSig(const tf::StampedTransform transform);
+    void jointStateSig(const sensor_msgs::JointState msg);
+
 private:
     //QT
     Ui::CartesianWidget *ui;

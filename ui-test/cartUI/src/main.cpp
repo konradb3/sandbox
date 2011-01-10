@@ -8,7 +8,7 @@
 int main(int argc, char *argv[])
 {
   ROSThread t;
-  ros::init(argc, argv, "JointUI");
+  ros::init(argc, argv, "JointUI", ros::init_options::AnonymousName);
 
   ros::NodeHandle nh;
 

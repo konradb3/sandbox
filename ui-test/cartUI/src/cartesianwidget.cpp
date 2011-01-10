@@ -5,21 +5,31 @@
 #include "cartesianwidget.h"
 #include "ui_cartesianwidget.h"
 
+Q_DECLARE_METATYPE(tf::StampedTransform);
+Q_DECLARE_METATYPE(sensor_msgs::JointState);
+
 CartesianWidget::CartesianWidget(ros::NodeHandle &nh, QWidget *parent) :
     QWidget(parent),
     ui(new Ui::CartesianWidget),
     n(nh),
     traj_client(NULL)
 {
+    qRegisterMetaType<tf::StampedTransform>();
+    qRegisterMetaType<sensor_msgs::JointState>();
+
     ui->setupUi(this);
     prop = new PropertyDialog();
-    listener = new tf::TransformListener;
+    listener = new tf::TransformListener(n);
     listener->addTransformsChangedListener(boost::bind(&CartesianWidget::transform, this));
 
     connect(ui->propButton, SIGNAL(clicked()), this, SLOT(properties()));
     connect(ui->moveButton, SIGNAL(clicked()), this, SLOT(move()));
     connect(ui->copyJointsButton, SIGNAL(clicked()), this, SLOT(copyJoints()));
     connect(ui->copyCartButton, SIGNAL(clicked()), this, SLOT(copyCart()));
+
+    connect(this, SIGNAL(jointStateSig(sensor_msgs::JointState)), this, SLOT(jointStateSl(sensor_msgs::JointState)), Qt::QueuedConnection);
+    connect(this, SIGNAL(transformSig(tf::StampedTransform)), this, SLOT(transformSl(tf::StampedTransform)), Qt::QueuedConnection);
+    
 }
 
 CartesianWidget::~CartesianWidget()
@@ -152,6 +162,15 @@ void CartesianWidget::transform()
   try{
     listener->lookupTransform(ui->controlFrameBox->currentText().toStdString(), tip_name,
                              ros::Time(0), transform);
+    emit transformSig(transform);
+  }
+  catch (tf::TransformException ex){
+
+  }
+}
+
+void CartesianWidget::transformSl(const tf::StampedTransform transform)
+{
     ui->posXDisp->display(transform.getOrigin().x());
     ui->posYDisp->display(transform.getOrigin().y());
     ui->posZDisp->display(transform.getOrigin().z());
@@ -161,10 +180,6 @@ void CartesianWidget::transform()
     ui->rotRDisp->display(R);
     ui->rotPDisp->display(P);
     ui->rotYDisp->display(Y);
-  }
-  catch (tf::TransformException ex){
-
-  }
 }
 
 void CartesianWidget::moveJoints(std::vector<std::string> &jointNames, std::vector<double> &jointPositions, double time)
@@ -200,7 +215,6 @@ void CartesianWidget::cleanJointList()
   msrLabels.clear();
   setButtons.clear();
   nameLabels.clear();
-
 }
 
 void CartesianWidget::addJoint(const QString &name, double lLimit, double uLimit)
@@ -248,7 +262,7 @@ bool CartesianWidget::jointActionInit(QString controllerName)
   }
 
   delete traj_client;
-  traj_client = new TrajClient(controllerName.toStdString() + "/joint_trajectory_action", true);
+  traj_client = new TrajClient(n, controllerName.toStdString() + "/joint_trajectory_action", false);
 
   if(traj_client->waitForServer(ros::Duration(2.0)))
   {
@@ -277,13 +291,18 @@ bool CartesianWidget::jointStateInit(QString topic)
 
 void CartesianWidget::jointStateCallback(const sensor_msgs::JointState::ConstPtr& msg)
 {
-  for(unsigned int i = 0; i < msg->name.size(); i++)
-  {
-    if(msrLabels.contains(QString(msg->name[i].c_str())))
+    emit jointStateSig(*msg);
+}
+
+void CartesianWidget::jointStateSl(const sensor_msgs::JointState msg)
+{
+    for(unsigned int i = 0; i < msg.name.size(); i++)
     {
-      msrLabels[QString(msg->name[i].c_str())]->display(msg->position[i]);
+      if(msrLabels.contains(QString(msg.name[i].c_str())))
+      {
+        msrLabels[QString(msg.name[i].c_str())]->display(msg.position[i]);
+      }
     }
-  }
 }
 
 void CartesianWidget::copyJoints()
