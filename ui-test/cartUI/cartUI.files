@@ -1,0 +1,13 @@
+CMakeLists.txt
+include/mainwindow.h
+manifest.xml
+src/CMakeLists.txt
+src/main.cpp
+src/rosthread.cpp
+src/rosthread.h
+src/cartesianwidget.h
+src/cartesianwidget.cpp
+src/cartesianwidget.ui
+src/propertydialog.h
+src/propertydialog.cpp
+src/propertydialog.ui

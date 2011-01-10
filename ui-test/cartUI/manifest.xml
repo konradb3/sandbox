@@ -1,0 +1,20 @@
+<package>
+  <description brief="cartUI">
+
+     jointUI
+
+  </description>
+  <author>Konrad Banachowicz</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/jointUI</url>
+  <depend package="roscpp"/>
+  <depend package="sensor_msgs"/>
+  <depend package="pr2_controllers_msgs"/>
+  <depend package="actionlib"/>
+  <depend package="kinematics_msgs"/>
+  <depend package="tf"/>
+  <depend package="urdf"/>
+</package>
+
+
