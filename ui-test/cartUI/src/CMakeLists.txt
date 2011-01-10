@@ -69,10 +69,10 @@ SET(GUI_UI
 QT4_WRAP_UI(GUI_CXX_SRCS ${GUI_UI})
 
 # Create GUI executable
-ROSBUILD_ADD_EXECUTABLE(discode_gui ${GUI_CXX_SRCS})
+ROSBUILD_ADD_EXECUTABLE(joint_action_GUI ${GUI_CXX_SRCS})
 
 # Link executable with QT libraries
-TARGET_LINK_LIBRARIES(discode_gui ${QT_LIBRARIES})
+TARGET_LINK_LIBRARIES(joint_action_GUI ${QT_LIBRARIES})
 
 ELSE(QT_FOUND)
 

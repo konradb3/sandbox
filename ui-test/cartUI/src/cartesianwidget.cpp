@@ -190,7 +190,7 @@ void CartesianWidget::moveJoints(std::vector<std::string> &jointNames, std::vect
   goal.trajectory.joint_names = jointNames;
   goal.trajectory.points[0].positions = jointPositions;
 
-  for(unsigned int i = 0; i > jointNames.size(); i++)
+  for(unsigned int i = 0; i < jointNames.size(); i++)
   {
     goal.trajectory.points[0].velocities.push_back(0.0);
   }
@@ -266,9 +266,11 @@ bool CartesianWidget::jointActionInit(QString controllerName)
 
   if(traj_client->waitForServer(ros::Duration(2.0)))
   {
+    setWindowTitle(QString("Joint Action GUI - ") + controllerName);
     return true;
   } else
   {
+    setWindowTitle(QString("Joint Action GUI - "));
     return false;
   }
 }
