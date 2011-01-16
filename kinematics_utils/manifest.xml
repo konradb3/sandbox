@@ -1,0 +1,20 @@
+<package>
+  <description brief="kinematics_utils">
+
+     kinematics_utils
+
+  </description>
+  <author>Konrad Banachowicz</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/kinematics_utils</url>
+  <depend package="kinematics_base"/>
+  <depend package="kinematics_msgs"/>
+  <depend package="geometry_msgs"/>
+  <depend package="kdl"/>
+  <depend package="tf"/>
+  <depend package="urdf"/>
+
+</package>
+
+
