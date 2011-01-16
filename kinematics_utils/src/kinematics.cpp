@@ -85,7 +85,63 @@ bool Kinematics::getFKSolverInfo(kinematics_msgs::GetKinematicSolverInfo::Reques
 bool Kinematics::getPositionIK(kinematics_msgs::GetPositionIK::Request &request,
                                kinematics_msgs::GetPositionIK::Response &response)
 {
+  std::vector<double> joint_seed, solution;
 
+  tf::Stamped<tf::Pose> tf_pose;
+  geometry_msgs::PoseStamped pose;
+
+  if (!checkIKService(request, response, ik_solver_info_))
+    return true;
+
+  tf::poseStampedMsgToTF(request.ik_request.pose_stamped, tf_pose);
+  try
+  {
+    tf_.transformPose(kin_->getBaseFrame(), tf_pose, tf_pose);
+  }
+  catch (...)
+  {
+    ROS_ERROR("Could not transform IK pose to frame: %s",kin_->getBaseFrame().c_str());
+    response.error_code.val = response.error_code.FRAME_TRANSFORM_FAILURE;
+    return true;
+  }
+  tf::poseStampedTFToMsg(tf_pose, pose);
+
+  //Do the IK
+  joint_seed.resize(dimension_);
+  solution.resize(dimension_);
+  for(int i=0; i < dimension_; i++)
+  {
+    int tmp_index = getJointIndex(request.ik_request.ik_seed_state.joint_state.name[i],ik_solver_info_);
+    if(tmp_index >=0)
+    {
+      joint_seed[tmp_index] = request.ik_request.ik_seed_state.joint_state.position[i];
+    }
+    else
+    {
+      ROS_ERROR("i: %d, No joint index for %s",i,request.ik_request.ik_seed_state.joint_state.name[i].c_str());
+    }
+  }
+
+  bool ik_valid = kin_->searchPositionIK(pose.pose, joint_seed, request.timeout.toSec(), solution);
+
+  if(ik_valid)
+  {
+    response.solution.joint_state.name = ik_solver_info_.joint_names;
+    response.solution.joint_state.position.resize(dimension_);
+    for(int i=0; i < dimension_; i++)
+    {
+      response.solution.joint_state.position[i] = solution[i];
+      ROS_DEBUG("IK Solution: %s %d: %f",response.solution.joint_state.name[i].c_str(),i,solution[i]);
+    }
+    response.error_code.val = response.error_code.SUCCESS;
+    return true;
+  }
+  else
+  {
+    ROS_DEBUG("An IK solution could not be found");
+    response.error_code.val = response.error_code.NO_IK_SOLUTION;
+    return true;
+  }
 }
 
 bool Kinematics::getPositionFK(kinematics_msgs::GetPositionFK::Request &request,
