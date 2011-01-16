@@ -5,7 +5,9 @@
  *      Author: konrad
  */
 
-#include "../include/kinematics_utils/kinematics.h"
+#include <kinematics_utils/kinematics_utils.h>
+
+#include <kinematics_utils/kinematics.h>
 
 namespace kinematics_node
 {
@@ -55,6 +57,8 @@ bool Kinematics::initialize()
   fk_solver_info_.link_names = kin_->getLinkNames();
   ik_solver_info_.link_names.push_back(kin_->getToolFrame());
 
+  dimension_ = ik_solver_info_.joint_names.size();
+
   fk_service_ = nh_.advertiseService(FK_SERVICE, &Kinematics::getPositionFK, this);
   ik_service_ = nh_.advertiseService(IK_SERVICE, &Kinematics::getPositionIK, this);
 
@@ -65,29 +69,75 @@ bool Kinematics::initialize()
 }
 
 bool Kinematics::getIKSolverInfo(kinematics_msgs::GetKinematicSolverInfo::Request &request,
-                     kinematics_msgs::GetKinematicSolverInfo::Response &response)
+                                 kinematics_msgs::GetKinematicSolverInfo::Response &response)
 {
   response.kinematic_solver_info = ik_solver_info_;
   return true;
 }
 
 bool Kinematics::getFKSolverInfo(kinematics_msgs::GetKinematicSolverInfo::Request &request,
-                     kinematics_msgs::GetKinematicSolverInfo::Response &response)
+                                 kinematics_msgs::GetKinematicSolverInfo::Response &response)
 {
   response.kinematic_solver_info = fk_solver_info_;
   return true;
 }
 
 bool Kinematics::getPositionIK(kinematics_msgs::GetPositionIK::Request &request,
-               kinematics_msgs::GetPositionIK::Response &response)
+                               kinematics_msgs::GetPositionIK::Response &response)
 {
 
 }
 
 bool Kinematics::getPositionFK(kinematics_msgs::GetPositionFK::Request &request,
-                   kinematics_msgs::GetPositionFK::Response &response)
+                               kinematics_msgs::GetPositionFK::Response &response)
 {
+  std::vector<double> joint_angles;
+  std::vector<geometry_msgs::Pose> poses;
+  geometry_msgs::PoseStamped pose;
+  tf::Stamped<tf::Pose> tf_pose;
 
+  if (!checkFKService(request, response, fk_solver_info_))
+    return true;
+
+  joint_angles.resize(dimension_);
+  for (int i = 0; i < dimension_; i++)
+  {
+    int tmp_index = getJointIndex(request.robot_state.joint_state.name[i], fk_solver_info_);
+    if (tmp_index >= 0)
+      joint_angles[tmp_index] = request.robot_state.joint_state.position[i];
+  }
+
+  poses.resize(request.fk_link_names.size());
+  if (!kin_->getPositionFK(request.fk_link_names, joint_angles, poses))
+  {
+    response.error_code.val = response.error_code.NO_FK_SOLUTION;
+    return true;
+  }
+
+  response.pose_stamped.resize(request.fk_link_names.size());
+  response.fk_link_names.resize(request.fk_link_names.size());
+
+  for (unsigned int i = 0; i < request.fk_link_names.size(); i++)
+  {
+    tf_pose.frame_id_ = kin_->getBaseFrame();
+    tf_pose.stamp_ = ros::Time();
+    tf::poseMsgToTF(poses[i], tf_pose);
+    try
+    {
+      tf_.transformPose(request.header.frame_id, tf_pose, tf_pose);
+    }
+    catch (...)
+    {
+      ROS_ERROR("Could not transform FK pose to frame: %s",request.header.frame_id.c_str());
+      response.error_code.val = response.error_code.FRAME_TRANSFORM_FAILURE;
+      return true;
+    }
+    tf::poseStampedTFToMsg(tf_pose, pose);
+    response.pose_stamped[i] = pose;
+    response.fk_link_names[i] = request.fk_link_names[i];
+    response.error_code.val = response.error_code.SUCCESS;
+  }
+  return true;
 }
 
 }

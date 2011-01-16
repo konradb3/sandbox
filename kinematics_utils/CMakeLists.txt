@@ -17,5 +17,5 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 rosbuild_add_library(${PROJECT_NAME} src/kinematics_utils.cpp)
-rosbuild_add_executable(kinematics_node src/kinematics_node.cpp src/kinematics.cpp)
+rosbuild_add_executable(kinematics_node src/kinematics_node.cpp src/kinematics.cpp src/kinematics_utils.cpp)
 

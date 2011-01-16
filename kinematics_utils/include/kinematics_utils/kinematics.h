@@ -70,7 +70,7 @@ private:
   ros::ServiceServer ik_service_, fk_service_, ik_solver_info_service_, fk_solver_info_service_;
   tf::TransformListener tf_;
   kinematics_msgs::KinematicSolverInfo ik_solver_info_, fk_solver_info_;
-  int dimisions_;
+  int dimension_;
 };
 
 }
