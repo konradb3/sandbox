@@ -266,9 +266,11 @@ bool CartesianWidget::jointActionInit(QString controllerName)
 
   if(traj_client->waitForServer(ros::Duration(2.0)))
   {
+    setWindowTitle(QString("Joint Action GUI - ") + controllerName);
     return true;
   } else
   {
+    setWindowTitle(QString("Joint Action GUI - "));
     return false;
   }
 }
