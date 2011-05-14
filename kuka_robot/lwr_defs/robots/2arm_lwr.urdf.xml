@@ -1,10 +1,14 @@
 <?xml version="1.0"?>
-<robot name="2arms">
+<robot xmlns:xacro="http://playerstage.sourceforge.net/gazebo/xmlschema/#interface"
+	 name="2arms">
 
   <include filename="$(find lwr_defs)/calibration/default_cal.xml"/>
   <include filename="$(find lwr_defs)/defs/kuka_lwr_arm_defs.xml"/>
   <include filename="$(find lwr_defs)/defs/gazebo_defs.xml"/>
   <include filename="$(find lwr_defs)/defs/materials.xml"/>
+
+  <!-- cob sdh-->
+  <include filename="$(find cob_description)/ros/urdf/sdh_v0/sdh.urdf.xacro" />
 
   <link name="world" />
 
@@ -47,6 +51,14 @@
     <origin xyz="${cal_base_to_right_arm_x} ${cal_base_to_right_arm_y} ${cal_base_to_right_arm_z}"
             rpy="${cal_base_to_right_arm_roll} ${cal_base_to_right_arm_pitch} ${cal_base_to_right_arm_yaw}"/>
   </kuka_lwr_arm>
+
+  <xacro:cob_sdh_v0 name="sdhr" parent="right_arm_7_link">
+    <origin xyz="0 0 0.02" rpy="0 0 1.5708" />
+  </xacro:cob_sdh_v0>
+
+  <xacro:cob_sdh_v0 name="sdhl" parent="left_arm_7_link">
+    <origin xyz="0 0 0.02" rpy="0 0 1.5708" />
+  </xacro:cob_sdh_v0>
 
 <!--
   <dlr_hit_right_hand name = "right_hand" parent = "right_arm_7_link">
