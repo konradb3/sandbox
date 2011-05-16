@@ -23,42 +23,42 @@
   <simple name="type" type="short"><value>0</value></simple>
   <simple name="size" type="short"><value>1</value></simple>
   <simple name="transport" type="short"><value>3</value></simple>
-  <simple name="name_id" type="string"><value>irp6p_controller/joint_trajectory_action/goal</value></simple>
+  <simple name="name_id" type="string"><value>/lwr_arm_controller/joint_trajectory_action/goal</value></simple>
 </struct>
 
 <struct name="cancel" type="ConnPolicy">
   <simple name="type" type="short"><value>0</value></simple>
   <simple name="size" type="short"><value>1</value></simple>
   <simple name="transport" type="short"><value>3</value></simple>
-  <simple name="name_id" type="string"><value>irp6p_controller/joint_trajectory_action/cancel</value></simple>
+  <simple name="name_id" type="string"><value>/lwr_arm_controller/joint_trajectory_action/cancel</value></simple>
 </struct>
 
 <struct name="status" type="ConnPolicy">
   <simple name="type" type="short"><value>0</value></simple>
   <simple name="size" type="short"><value>1</value></simple>
   <simple name="transport" type="short"><value>3</value></simple>
-  <simple name="name_id" type="string"><value>irp6p_controller/joint_trajectory_action/status</value></simple>
+  <simple name="name_id" type="string"><value>/lwr_arm_controller/joint_trajectory_action/status</value></simple>
 </struct>
 
 <struct name="feedback" type="ConnPolicy">
   <simple name="type" type="short"><value>0</value></simple>
   <simple name="size" type="short"><value>1</value></simple>
   <simple name="transport" type="short"><value>3</value></simple>
-  <simple name="name_id" type="string"><value>irp6p_controller/joint_trajectory_action/feedback</value></simple>
+  <simple name="name_id" type="string"><value>/lwr_arm_controller/joint_trajectory_action/feedback</value></simple>
 </struct>
 
 <struct name="result" type="ConnPolicy">
   <simple name="type" type="short"><value>0</value></simple>
   <simple name="size" type="short"><value>1</value></simple>
   <simple name="transport" type="short"><value>3</value></simple>
-  <simple name="name_id" type="string"><value>irp6p_controller/joint_trajectory_action/result</value></simple>
+  <simple name="name_id" type="string"><value>/lwr_arm_controller/joint_trajectory_action/result</value></simple>
 </struct>
 
 <struct name="command" type="ConnPolicy">
   <simple name="type" type="short"><value>0</value></simple>
   <simple name="size" type="short"><value>1</value></simple>
   <simple name="transport" type="short"><value>3</value></simple>
-  <simple name="name_id" type="string"><value>irp6p_controller/command</value></simple>
+  <simple name="name_id" type="string"><value>/lwr_arm_controller/command</value></simple>
 </struct>
 
 <struct name="JointStatePublisher" type="JointStatePublisher">

@@ -1,9 +1,9 @@
 <launch>
 
   <!-- Arm kinematics -->
-  <node pkg="arm_kinematics" type="arm_kinematics" name="irp6p_arm_kinematics">
-    <param name="root_name" type="String" value="base_link" />
-    <param name="tip_name" type="String" value="link6" />
+  <node pkg="arm_kinematics" type="arm_kinematics" name="lwr_arm_kinematics">
+    <param name="root_name" type="String" value="calib_lwr_arm_base_link" />
+    <param name="tip_name" type="String" value="lwr_arm_7_link" />
     <param name="urdf_xml" type="String" value="/robot_description" />
   </node>
 

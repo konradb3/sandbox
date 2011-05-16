@@ -1,148 +1,66 @@
 <!DOCTYPE QtCreatorProject>
 <qtcreator>
  <data>
-  <variable>RunConfiguration0-Arguments</variable>
-  <valuelist type="QVariantList"/>
- </data>
- <data>
-  <variable>RunConfiguration0-BaseEnvironmentBase</variable>
-  <value type="int">2</value>
- </data>
- <data>
-  <variable>RunConfiguration0-Executable</variable>
-  <value type="QString">/home/konradb3/ros/RCPRG-ros-pkg/sandbox/ui-test/cartUI/bin/discode_gui</value>
- </data>
- <data>
-  <variable>RunConfiguration0-RunConfiguration.name</variable>
-  <value type="QString">xcvxcvx</value>
- </data>
- <data>
-  <variable>RunConfiguration0-UseTerminal</variable>
-  <value type="bool">false</value>
- </data>
- <data>
-  <variable>RunConfiguration0-UserEnvironmentChanges</variable>
-  <valuelist type="QVariantList">
-   <value type="QString">ROS_MASTER_URI=http://localhost:11311</value>
-  </valuelist>
- </data>
- <data>
-  <variable>RunConfiguration0-UserName</variable>
-  <value type="QString">xcvxcvx</value>
- </data>
- <data>
-  <variable>RunConfiguration0-UserSetName</variable>
-  <value type="bool">true</value>
- </data>
- <data>
-  <variable>RunConfiguration0-WorkingDirectory</variable>
-  <value type="QString">$BUILDDIR</value>
- </data>
- <data>
-  <variable>RunConfiguration0-type</variable>
-  <value type="QString">ProjectExplorer.CustomExecutableRunConfiguration</value>
- </data>
- <data>
-  <variable>activeRunConfiguration</variable>
+  <variable>GenericProjectManager.GenericProject.Toolchain</variable>
   <value type="int">0</value>
  </data>
  <data>
-  <variable>activebuildconfiguration</variable>
-  <value type="QString">all</value>
- </data>
- <data>
-  <variable>buildConfiguration-all</variable>
-  <valuemap type="QVariantMap">
-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">all</value>
-   <value key="buildDirectory" type="QString">/home/konradb3/ros/RCPRG-ros-pkg/sandbox/ui-test/cartUI</value>
-  </valuemap>
- </data>
- <data>
-  <variable>buildconfiguration-all-buildstep0</variable>
-  <valuemap type="QVariantMap">
-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString">all</value>
-   <valuelist key="abstractProcess.Environment" type="QVariantList">
-    <value type="QString">DBUS_SESSION_BUS_ADDRESS=unix:abstract=/tmp/dbus-skXuTk8yXT,guid=24ca97f53101e428f04339554d2aec6f</value>
-    <value type="QString">DEFAULTS_PATH=/usr/share/gconf/gnome.default.path</value>
-    <value type="QString">DESKTOP_SESSION=gnome</value>
-    <value type="QString">DISPLAY=:0.0</value>
-    <value type="QString">GDMSESSION=gnome</value>
-    <value type="QString">GDM_KEYBOARD_LAYOUT=pl</value>
-    <value type="QString">GDM_LANG=pl_PL.utf8</value>
-    <value type="QString">GNOME_DESKTOP_SESSION_ID=this-is-deprecated</value>
-    <value type="QString">GNOME_KEYRING_CONTROL=/tmp/keyring-abjSAp</value>
-    <value type="QString">GNOME_KEYRING_PID=2478</value>
-    <value type="QString">GTK_MODULES=canberra-gtk-module</value>
-    <value type="QString">HOME=/home/konradb3</value>
-    <value type="QString">LANG=pl_PL.utf8</value>
-    <value type="QString">LD_LIBRARY_PATH=/usr/lib/qtcreator</value>
-    <value type="QString">LIBGL_DRIVERS_PATH=/usr/lib/fglrx/dri:/usr/lib32/fglrx/dri</value>
-    <value type="QString">LOGNAME=konradb3</value>
-    <value type="QString">MAKEFLAGS=-I/opt/qnx650/target/qnx6/usr/include</value>
-    <value type="QString">MANDATORY_PATH=/usr/share/gconf/gnome.mandatory.path</value>
-    <value type="QString">ORBIT_SOCKETDIR=/tmp/orbit-konradb3</value>
-    <value type="QString">PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/opt/qnx650/host/linux/x86/usr/bin:/etc/qnx/bin</value>
-    <value type="QString">PWD=/home/konradb3</value>
-    <value type="QString">QNX_CONFIGURATION=/etc/qnx</value>
-    <value type="QString">QNX_HOST=/opt/qnx650/host/linux/x86</value>
-    <value type="QString">QNX_JAVAHOME=/opt/qnx650/_jvm</value>
-    <value type="QString">QNX_TARGET=/opt/qnx650/target/qnx6</value>
-    <value type="QString">SESSION_MANAGER=local/soplica:@/tmp/.ICE-unix/2496,unix/soplica:/tmp/.ICE-unix/2496</value>
-    <value type="QString">SHELL=/bin/bash</value>
-    <value type="QString">SPEECHD_PORT=8167</value>
-    <value type="QString">SSH_AGENT_PID=2535</value>
-    <value type="QString">SSH_AUTH_SOCK=/tmp/keyring-abjSAp/ssh</value>
-    <value type="QString">USER=konradb3</value>
-    <value type="QString">USERNAME=konradb3</value>
-    <value type="QString">XAUTHORITY=/var/run/gdm/auth-for-konradb3-hEqwSk/database</value>
-    <value type="QString">XDG_CONFIG_DIRS=/etc/xdg/xdg-gnome:/etc/xdg</value>
-    <value type="QString">XDG_DATA_DIRS=/usr/share/gnome:/usr/local/share/:/usr/share/</value>
-    <value type="QString">XDG_SESSION_COOKIE=a6021defdefacf2b471f0ef94b73f9bb-1294658670.343350-1557687787</value>
-   </valuelist>
-   <valuelist key="abstractProcess.arguments" type="QVariantList"/>
-   <value key="abstractProcess.command" type="QString">ls</value>
-   <value key="abstractProcess.enabled" type="bool">true</value>
-   <value key="abstractProcess.workingDirectory" type="QString">/home/konradb3/ros/RCPRG-ros-pkg/sandbox/ui-test/cartUI</value>
-   <valuelist key="buildTargets" type="QVariantList"/>
-   <value key="makeCommand" type="QString">ls</value>
-  </valuemap>
- </data>
- <data>
-  <variable>buildconfigurations</variable>
-  <valuelist type="QVariantList">
-   <value type="QString">all</value>
-  </valuelist>
- </data>
- <data>
-  <variable>buildstep0</variable>
-  <valuemap type="QVariantMap">
-   <value key="ProjectExplorer.BuildConfiguration.DisplayName" type="QString"></value>
-  </valuemap>
- </data>
- <data>
-  <variable>buildsteps</variable>
-  <valuelist type="QVariantList">
-   <value type="QString">GenericProjectManager.MakeStep</value>
-  </valuelist>
- </data>
- <data>
-  <variable>cleansteps</variable>
-  <valuelist type="QVariantList"/>
- </data>
- <data>
-  <variable>defaultFileEncoding</variable>
-  <value type="QByteArray">System</value>
- </data>
- <data>
-  <variable>includePaths</variable>
-  <valuelist type="QVariantList"/>
- </data>
- <data>
-  <variable>project</variable>
-  <valuemap type="QVariantMap"/>
- </data>
- <data>
-  <variable>toolChain</variable>
+  <variable>ProjectExplorer.Project.ActiveTarget</variable>
   <value type="int">0</value>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.EditorSettings</variable>
+  <valuemap type="QVariantMap">
+   <value key="EditorConfiguration.Codec" type="QByteArray">System</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.Target.0</variable>
+  <valuemap type="QVariantMap">
+   <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">Desktop</value>
+   <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">GenericProjectManager.GenericTarget</value>
+   <value key="ProjectExplorer.Target.ActiveBuildConfiguration" type="int">0</value>
+   <value key="ProjectExplorer.Target.ActiveRunConfiguration" type="int">0</value>
+   <valuemap key="ProjectExplorer.Target.BuildConfiguration.0" type="QVariantMap">
+    <value key="GenericProjectManager.GenericBuildConfiguration.BuildDirectory" type="QString">/home/konradb3/ros/RCPRG-ros-pkg/sandbox/ui-test/cartUI</value>
+    <valuemap key="ProjectExplorer.BuildConfiguration.BuildStep.0" type="QVariantMap">
+     <valuelist key="GenericProjectManager.GenericMakeStep.BuildTargets" type="QVariantList"/>
+     <valuelist key="GenericProjectManager.GenericMakeStep.MakeArguments" type="QVariantList"/>
+     <value key="GenericProjectManager.GenericMakeStep.MakeCommand" type="QString">ls</value>
+     <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString"></value>
+     <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">GenericProjectManager.GenericMakeStep</value>
+    </valuemap>
+    <value key="ProjectExplorer.BuildConfiguration.BuildStepsCount" type="int">1</value>
+    <value key="ProjectExplorer.BuildConfiguration.CleanStepsCount" type="int">0</value>
+    <value key="ProjectExplorer.BuildConfiguration.ClearSystemEnvironment" type="bool">false</value>
+    <valuelist key="ProjectExplorer.BuildConfiguration.UserEnvironmentChanges" type="QVariantList"/>
+    <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">all</value>
+    <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">GenericProjectManager.GenericBuildConfiguration</value>
+   </valuemap>
+   <value key="ProjectExplorer.Target.BuildConfigurationCount" type="int">1</value>
+   <valuemap key="ProjectExplorer.Target.RunConfiguration.0" type="QVariantMap">
+    <valuelist key="ProjectExplorer.CustomExecutableRunConfiguration.Arguments" type="QVariantList"/>
+    <value key="ProjectExplorer.CustomExecutableRunConfiguration.BaseEnvironmentBase" type="int">2</value>
+    <value key="ProjectExplorer.CustomExecutableRunConfiguration.Executable" type="QString">/home/konradb3/ros/RCPRG-ros-pkg/sandbox/ui-test/cartUI/bin/discode_gui</value>
+    <value key="ProjectExplorer.CustomExecutableRunConfiguration.UseTerminal" type="bool">false</value>
+    <valuelist key="ProjectExplorer.CustomExecutableRunConfiguration.UserEnvironmentChanges" type="QVariantList">
+     <value type="QString">ROS_MASTER_URI=http://localhost:11311</value>
+    </valuelist>
+    <value key="ProjectExplorer.CustomExecutableRunConfiguration.UserName" type="QString">xcvxcvx</value>
+    <value key="ProjectExplorer.CustomExecutableRunConfiguration.UserSetName" type="bool">true</value>
+    <value key="ProjectExplorer.CustomExecutableRunConfiguration.WorkingDirectory" type="QString">$BUILDDIR</value>
+    <value key="ProjectExplorer.ProjectConfiguration.DisplayName" type="QString">xcvxcvx</value>
+    <value key="ProjectExplorer.ProjectConfiguration.Id" type="QString">ProjectExplorer.CustomExecutableRunConfiguration</value>
+   </valuemap>
+   <value key="ProjectExplorer.Target.RunConfigurationCount" type="int">1</value>
+  </valuemap>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.TargetCount</variable>
+  <value type="int">1</value>
+ </data>
+ <data>
+  <variable>ProjectExplorer.Project.Updater.FileVersion</variable>
+  <value type="int">4</value>
  </data>
 </qtcreator>

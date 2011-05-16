@@ -3,8 +3,8 @@
   <!-- send elektron.xml to param server -->
   <param name="robot_description" command="$(find xacro)/xacro.py '$(find lwr_defs)/robots/kuka_lwr_arm.urdf.xml'" />
 
- <!--  <rosparam command="load" file="$(find irp6_launch)/controllers.yaml" />
--->
+  <rosparam command="load" file="$(find lwr_bringup)/controllers.yaml" />
+
   <!-- Robot state publisher -->
   <node pkg="robot_state_publisher" type="state_publisher" name="robot_state_publisher">
     <param name="publish_frequency" type="double" value="50.0" />
