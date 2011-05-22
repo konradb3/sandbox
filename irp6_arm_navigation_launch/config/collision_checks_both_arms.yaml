@@ -1,0 +1,6 @@
+## This file should be loaded under <robot description>_collision
+
+default_collision_operations:
+  - object1: robot_body
+    object2: irp6p
+    operation: enable

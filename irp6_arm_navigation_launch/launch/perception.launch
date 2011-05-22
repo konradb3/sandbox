@@ -1,0 +1,42 @@
+<launch>
+
+  <!-- send additional description parameters -->
+  <include file="$(find rosie_arm_navigation_launch)/launch/rosie_planning_environment.launch" />
+
+  <!-- convert tilt laser scan to pointcloud -->
+  <node pkg="laser_filters" type="scan_to_cloud_filter_chain" output="screen" name="scan_to_cloud_filter_chain_tilt_laser">
+    <remap from="scan" to="/laser/shoulder_tilting_laser_sensor"/>
+    <remap from="cloud_filtered" to="/tilt_scan_cloud"/>
+    <param name="target_frame" type="string" value="base_link"/>
+    <rosparam command="load" file="$(find rosie_arm_navigation_launch)/config/shadow_filter.yaml" />
+  </node>
+
+  <node pkg="laser_filters" type="scan_to_cloud_filter_chain" output="screen" name="scan_to_cloud_filter_chain_tilt_laser_base">
+    <remap from="scan" to="/laser/laser_front_left"/>
+    <remap from="cloud_filtered" to="/base_laser_cloud"/>
+    <param name="target_frame" type="string" value="base_link"/>
+  </node>
+
+  <!-- need to individually self filter scans -->
+  <include file="$(find rosie_arm_navigation_launch)/launch/tilt_laser_self_filter.launch" />    
+
+  <!-- assemble pointcloud into a full world view -->
+  <node pkg="laser_assembler" type="point_cloud_assembler" output="screen"  name="point_cloud_assembler">
+    <remap from="cloud" to="tilt_scan_cloud_filtered"/>
+    <param name="tf_cache_time_secs" type="double" value="10.0" />
+    <param name="tf_tolerance_secs" type="double" value="0.0" />
+    <param name="max_clouds" type="int" value="400" />
+    <param name="ignore_laser_skew" type="bool" value="true" />
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+  
+  <node pkg="pr2_arm_navigation_perception" type="pr2_laser_snapshotter" output="screen" name="snapshotter">
+    <remap from="laser_scanner_signal" to="laser_tilt_controller/laser_scanner_signal"/>
+    <remap from="build_cloud" to="point_cloud_assembler/build_cloud" />
+    <remap from="full_cloud" to="full_cloud_filtered" />
+  </node>
+
+  <!-- start collision map -->
+  <include file="$(find rosie_arm_navigation_launch)/launch/collision_map_self_occ.launch" />
+    
+</launch>

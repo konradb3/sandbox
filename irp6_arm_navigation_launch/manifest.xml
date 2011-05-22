@@ -1,0 +1,17 @@
+<package>
+  <description brief="rirp6p_arm_navigation">
+
+     rirp6p_arm_navigation
+
+  </description>
+  <author>Konrad Banachowicz</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/irp6p_arm_navigation</url>
+
+  <depend package="arm_navigation_tests"/>
+  <depend package="rosie_arm_kinematics"/>
+
+</package>
+
+

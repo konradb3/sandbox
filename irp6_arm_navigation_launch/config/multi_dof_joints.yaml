@@ -1,0 +1,5 @@
+multi_dof_joints:
+  - name: base_joint
+    type: Fixed
+    parent_frame_id: world
+    child_frame_id: world

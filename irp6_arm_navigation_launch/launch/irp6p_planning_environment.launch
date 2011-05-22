@@ -1,0 +1,11 @@
+<launch> 
+        <!-- send parameters for collision checking for Rosie; this includes parameters for the self filter -->
+        <rosparam command="load" ns="robot_description_collision" file="$(find irp6_arm_navigation_launch)/config/collision_checks_both_arms.yaml" />
+
+        <!-- send parameters for multidof -->
+        <rosparam command="load" ns="robot_description_planning" file="$(find irp6_arm_navigation_launch)/config/multi_dof_joints.yaml" />
+
+        <!-- send parameters needed for motion planning -->
+        <rosparam command="load" ns="robot_description_planning" file="$(find irp6_arm_navigation_launch)/config/planning_groups.yaml" />
+
+</launch>

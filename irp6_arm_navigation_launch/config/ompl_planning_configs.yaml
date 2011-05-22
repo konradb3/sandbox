@@ -1,0 +1,31 @@
+## This file should be loaded under ompl_planning
+
+## the list of groups for which motion planning can be performed
+groups:
+  - irp6p
+
+## the planner configurations; each config must have a type, which specifies
+## the planner to be used; other parameters can be specified as well, depending 
+## on the planner
+
+planner_configs:
+  SBLkConfig1:
+    type: kinematic::SBL
+  LBKPIECEkConfig1:
+    type: kinematic::LBKPIECE
+
+irp6p:
+  planner_type: JointPlanner
+  planner_configs:
+    - SBLkConfig1 
+    - LBKPIECEkConfig1
+  projection_evaluator: joint_state
+
+## the definition of the planners that go in each group
+#groups:
+#
+#  - name: irp6p
+#    planner_configs:
+#      RRTkConfig2 SBLkConfig2 KPIECEkConfig1 
+
+      
