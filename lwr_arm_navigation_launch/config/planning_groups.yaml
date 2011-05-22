@@ -1,0 +1,27 @@
+## This file should be loaded under <robot description>_planning
+
+## the definition of each group
+groups:
+  - name: lwr_arm
+    joints:
+      lwr_arm_0_joint
+      lwr_arm_1_joint
+      lwr_arm_2_joint
+      lwr_arm_3_joint
+      lwr_arm_4_joint
+      lwr_arm_5_joint
+      lwr_arm_6_joint
+    links:
+      lwr_arm_base_link
+      lwr_arm_0_link
+      lwr_arm_1_link
+      lwr_arm_2_link
+      lwr_arm_3_link
+      lwr_arm_4_link
+      lwr_arm_5_link
+      lwr_arm_6_link
+  - name: lwr_base
+    joints:
+      world_joint
+    links:
+      world_link

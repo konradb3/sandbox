@@ -1,0 +1,7 @@
+## This file should be loaded under <robot description>_collision
+
+default_collision_operations:
+  - object1: lwr_base
+    object2: lwr_arm
+    operation: enable
+
