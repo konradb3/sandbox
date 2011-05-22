@@ -12,5 +12,7 @@
   </node>
 
   <!-- load controllers -->
+   <node name="lwr_controller" pkg="ocl" type="deployer-gnulinux" launch-prefix="lxterm -e" args="-s $(find lwr_bringup)/lwr_fakeservo.xml --">
+   </node> 
 </launch>
 
