@@ -46,13 +46,13 @@ class TestMotionExecutionBuffer(unittest.TestCase):
         obj1.shapes = [Shape() for _ in range(1)]
         obj1.shapes[0].type = Shape.BOX
         obj1.shapes[0].dimensions = [float() for _ in range(3)]
-        obj1.shapes[0].dimensions[0] = .4
+        obj1.shapes[0].dimensions[0] = 1.0
         obj1.shapes[0].dimensions[1] = 4.0
         obj1.shapes[0].dimensions[2] = 0.8
         obj1.poses = [Pose() for _ in range(1)]
-        obj1.poses[0].position.x = .9
+        obj1.poses[0].position.x = 1.0
         obj1.poses[0].position.y = -.5
-        obj1.poses[0].position.z = 0.4
+        obj1.poses[0].position.z = 0.25
         obj1.poses[0].orientation.x = 0
         obj1.poses[0].orientation.y = 0
         obj1.poses[0].orientation.z = 0
@@ -104,11 +104,11 @@ class TestMotionExecutionBuffer(unittest.TestCase):
             motion_plan_request.goal_constraints.joint_constraints[i].tolerance_above = 0.08
             motion_plan_request.goal_constraints.joint_constraints[i].tolerance_below = 0.08
 
-        motion_plan_request.goal_constraints.joint_constraints[0].position = 0.0
+        motion_plan_request.goal_constraints.joint_constraints[0].position = -0.0
         motion_plan_request.goal_constraints.joint_constraints[1].position = -1.57
         motion_plan_request.goal_constraints.joint_constraints[3].position = 0.0
-        motion_plan_request.goal_constraints.joint_constraints[4].position = 0.0 #-1.57
-        motion_plan_request.goal_constraints.joint_constraints[5].position = 0.0  #1.57
+        motion_plan_request.goal_constraints.joint_constraints[4].position = 4.71
+        motion_plan_request.goal_constraints.joint_constraints[5].position = -2.8  #1.57
         
         goal = MoveArmGoal()
         goal.planner_service_name = "ompl_planning/plan_kinematic_path"

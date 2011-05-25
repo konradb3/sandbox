@@ -2,43 +2,19 @@ min_sensor_dist: .05
 self_see_default_padding: .02
 self_see_default_scale: 1.0
 self_see_links:
-  - name: head_pan_link
-    padding: .03
-  - name: right_arm_1_link
-    padding: .02
-  - name: right_arm_2_link
-    padding: .02
-  - name: right_arm_3_link
-    padding: .02
-  - name: right_arm_4_link
-    padding: .02
-  - name: right_arm_5_link
-    padding: .02
-  - name: right_arm_6_link
-    padding: .02
-  - name: right_arm_7_link
-    padding: .02
-  - name: right_hand_palm
+  - name: link1
+    padding: .2
+  - name: link2
+    padding: .2
+  - name: link3
     padding: .05
-  - name: right_hand_thumb_base
+  - name: link4
+    padding: .2
+  - name: link5
+    padding: .2
+  - name: link6
+    padding: .1
+  - name: base_link
     padding: .02
-  - name: left_arm_1_link
-    padding: .02
-  - name: left_arm_2_link
-    padding: .02
-  - name: left_arm_3_link
-    padding: .02
-  - name: left_arm_4_link
-    padding: .02
-  - name: left_arm_5_link
-    padding: .02
-  - name: left_arm_6_link
-    padding: .02
-  - name: left_arm_7_link
-    padding: .02
-  - name: left_hand_palm
+  - name: griper_link
     padding: .05
-  - name: left_hand_thumb_base
-    padding: .02
-    
-  

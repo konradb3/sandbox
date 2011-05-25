@@ -46,12 +46,12 @@ class TestMotionExecutionBuffer(unittest.TestCase):
         obj1.shapes = [Shape() for _ in range(1)]
         obj1.shapes[0].type = Shape.BOX
         obj1.shapes[0].dimensions = [float() for _ in range(3)]
-        obj1.shapes[0].dimensions[0] = .3
+        obj1.shapes[0].dimensions[0] = .6
         obj1.shapes[0].dimensions[1] = .1
         obj1.shapes[0].dimensions[2] = 1.0
         obj1.poses = [Pose() for _ in range(1)]
         obj1.poses[0].position.x = .85
-        obj1.poses[0].position.y = 0.0
+        obj1.poses[0].position.y = -0.1
         obj1.poses[0].position.z = 0.5
         obj1.poses[0].orientation.x = 0
         obj1.poses[0].orientation.y = 0
@@ -60,8 +60,36 @@ class TestMotionExecutionBuffer(unittest.TestCase):
         
         self.obj_pub.publish(obj1)
 
-        rospy.sleep(1.0)
-        
+        rospy.sleep(0.5)
+
+        obj1.id = "obj2";
+
+        obj1.shapes[0].dimensions[0] = 1.5
+        obj1.shapes[0].dimensions[1] = .1
+        obj1.shapes[0].dimensions[2] = 0.5
+
+        obj1.poses[0].position.x = .85
+        obj1.poses[0].position.y = -0.1
+        obj1.poses[0].position.z = 1.6
+
+	self.obj_pub.publish(obj1)
+
+        rospy.sleep(0.5)
+
+        obj1.id = "obj3";
+
+        obj1.shapes[0].dimensions[0] = 0.5
+        obj1.shapes[0].dimensions[1] = 2.0
+        obj1.shapes[0].dimensions[2] = 0.7
+
+        obj1.poses[0].position.x = .85
+        obj1.poses[0].position.y = 0.1
+        obj1.poses[0].position.z = 0.35
+
+	self.obj_pub.publish(obj1)
+
+        rospy.sleep(0.5)
+
     def tearDown(self):
         obj1 = CollisionObject()
         obj1.header.stamp = rospy.Time.now()
@@ -86,7 +114,7 @@ class TestMotionExecutionBuffer(unittest.TestCase):
         motion_plan_request.group_name = "irp6p"
         motion_plan_request.num_planning_attempts = 1
         motion_plan_request.allowed_planning_time = rospy.Duration(30.)
-        motion_plan_request.planner_id = "LBKPIECEkConfig1"
+        motion_plan_request.planner_id = ""
         planner_service_name = "ompl_planning/plan_kinematic_path"
 
         motion_plan_request.goal_constraints.position_constraints = [motion_planning_msgs.msg.PositionConstraint() for _ in range(1)]
@@ -106,7 +134,7 @@ class TestMotionExecutionBuffer(unittest.TestCase):
         
         motion_plan_request.goal_constraints.orientation_constraints = [motion_planning_msgs.msg.OrientationConstraint() for _ in range(1)]
         motion_plan_request.goal_constraints.orientation_constraints[0].header.stamp = rospy.Time.now()
-        motion_plan_request.goal_constraints.orientation_constraints[0].header.frame_id = "base_link"    
+        motion_plan_request.goal_constraints.orientation_constraints[0].header.frame_id = "base_link"
         motion_plan_request.goal_constraints.orientation_constraints[0].link_name = "link6"
         
         vals = [float() for _ in range(4)]

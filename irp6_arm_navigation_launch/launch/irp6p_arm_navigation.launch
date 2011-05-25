@@ -8,7 +8,6 @@
 
  <!-- load move_arm -->
  <include file="$(find irp6_arm_navigation_launch)/launch/move_right_arm.launch"/>
- <!--include file="$(find rosie_arm_navigation_launch)/launch/move_left_arm.launch"/-->
 
  <!-- load planning_environment -->
  <include file="$(find irp6_arm_navigation_launch)/launch/environment_server_right_arm.launch"/>
